@@ -5,14 +5,16 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register('scores', views.ScoreViewSet)
 router.register('students', views.StudentViewSet)
-router.register('subjects', views.SubjectViewSet)
 router.register('classes', views.ClassViewSet)
 router.register('instructors', views.InstructorViewSet)
-router.register('forums', views.ForumViewSet, basename='forum')
-
+router.register('forums', views.ForumViewSet)
+router.register('semesters', views.SemesterViewSet)
+router.register('subjects', views.SemesterSubjectViewSet)
+router.register('users', views.UserViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('forumss/<int:lesson_id>/comments/',
-         views.CommentAPIView.as_view())
+    path('forums/<int:forum_id>/comments/',
+         views.CommentAPIView.as_view()),
+    path('csv/', views.CSVHandleView.as_view())
 ]
